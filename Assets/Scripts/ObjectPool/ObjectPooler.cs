@@ -22,6 +22,7 @@ namespace TapToDefuse.ObjectPool
         
         [SerializeField] private Vector3 spawnPos;
         [SerializeField] private PoolContainer poolContainer;
+        [SerializeField] private Transform startPoolParent;
 
         private Dictionary<string, Queue<BasePoolObject>> _poolDict;
         private bool _poolIsInit;
@@ -51,7 +52,7 @@ namespace TapToDefuse.ObjectPool
                 
                 for (int i = 0; i < pool.PoolSize; i++)
                 {
-                    BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity);
+                    BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity, startPoolParent);
                     bpo.OnCreate(pool.PoolTag);
                     bpo.gameObject.SetActive(false);
                     DontDestroyOnLoad(bpo.gameObject);
