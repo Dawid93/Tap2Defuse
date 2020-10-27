@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5348753265521784604}
   - component: {fileID: 724860758671528910}
-  - component: {fileID: 2174818151440424792}
+  - component: {fileID: -2558201828262934812}
   - component: {fileID: 8401827639037203975}
   m_Layer: 5
   m_Name: AvoidBomb
@@ -47,7 +47,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7051703238506922632}
   m_CullTransparentMesh: 0
---- !u!114 &2174818151440424792
+--- !u!114 &-2558201828262934812
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -56,11 +56,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 7051703238506922632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdf229e9b8a24b1e83b7c237a8d74365, type: 3}
+  m_Script: {fileID: 11500000, guid: 312679ba6f504984a81286500fe8b0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   counterSprite: {fileID: 7606749233373797299}
   scaleTime: 0.1
+  timerValue: 3
 --- !u!114 &8401827639037203975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +103,7 @@ GameObject:
   - component: {fileID: 373515914543084037}
   - component: {fileID: 7606749233373797299}
   m_Layer: 5
-  m_Name: BomCounter
+  m_Name: BombCounter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

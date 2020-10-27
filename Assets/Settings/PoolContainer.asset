@@ -18,6 +18,6 @@ MonoBehaviour:
       type: 3}
     poolSize: 30
   - poolTag: AvoidBomb
-    poolObject: {fileID: 2174818151440424792, guid: ea2a38a95205e4eb6be3f0ef530ff682,
+    poolObject: {fileID: -2558201828262934812, guid: ea2a38a95205e4eb6be3f0ef530ff682,
       type: 3}
     poolSize: 30

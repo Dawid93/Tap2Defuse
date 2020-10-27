@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using TapToDefuse.Interface;
 using TapToDefuse.ObjectPool;
 using UniRx;
 using UniRx.InternalUtil;
@@ -16,10 +15,11 @@ namespace TapToDefuse.Game
         [SerializeField] protected Image counterSprite;
         [SerializeField] private float scaleTime = 0.1f;
 
-        protected float CounterValue;
+        protected float TimerValue;
         
         private RectTransform _rect;
         private IDisposable _counter;
+        private BombCell _currentCell;
         
 
         public override void OnCreate(string poolTag)
@@ -28,14 +28,22 @@ namespace TapToDefuse.Game
             _rect = GetComponent<RectTransform>();
         }
 
-        public override void OnSpawn()
+        public override void OnSpawn(object additionalSettings)
         {
+            if (additionalSettings is TapBombSettings tbs)
+            {
+                _currentCell = tbs.BombCell;
+                _currentCell.SetBomb(this);
+            }
             counterSprite.fillAmount = 0;
+            _rect.localScale = Vector3.zero;
             LeanTween.scale(_rect, Vector3.one, scaleTime).setOnComplete(StartCounter);
         }
 
         public override void OnReturn()
         {
+            _currentCell.SetBomb(null);
+            _currentCell = null;
             StopCounter();
             transform.localScale = Vector3.zero;
         }
@@ -47,7 +55,7 @@ namespace TapToDefuse.Game
 
         protected virtual void OnTapAction()
         {
-            
+            ObjectPooler.Instance.ReturnToPool(this);
         }
 
         protected virtual void OnTimeEnd()
@@ -65,8 +73,8 @@ namespace TapToDefuse.Game
             while (true)
             {
                 currentTime += Time.deltaTime;
-                counterSprite.fillAmount = Mathf.Clamp01(currentTime / CounterValue);
-                if(currentTime >= CounterValue)
+                counterSprite.fillAmount = Mathf.Clamp01(currentTime / TimerValue);
+                if(currentTime >= TimerValue)
                     OnTimeEnd();
                 yield return null;
             }

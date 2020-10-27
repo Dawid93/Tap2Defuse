@@ -64,7 +64,7 @@ namespace TapToDefuse.ObjectPool
             _poolIsInit = true;
         }
 
-        public BasePoolObject GetFromPool(string poolTag, Vector3 pos, Quaternion rot, Transform parent)
+        public BasePoolObject GetFromPool(string poolTag, Vector3 pos, Quaternion rot, Transform parent, object additionalSettings = null)
         {
             if (!_poolIsInit)
                 InitPools();
@@ -80,7 +80,7 @@ namespace TapToDefuse.ObjectPool
             poolTransform.localPosition = pos;
             poolTransform.localRotation = rot;
             poolObject.gameObject.SetActive(true);
-            poolObject.OnSpawn();
+            poolObject.OnSpawn(additionalSettings);
             
             _poolDict[poolTag].Enqueue(poolObject);
             return poolObject;
@@ -90,7 +90,7 @@ namespace TapToDefuse.ObjectPool
         {
             basePoolObject.OnReturn();
             Transform poolTransform = basePoolObject.transform;
-            poolTransform.SetParent(null);
+            poolTransform.SetParent(startPoolParent);
             poolTransform.position = spawnPos;
             basePoolObject.gameObject.SetActive(false);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 
 namespace TapToDefuse.ObjectPool
@@ -9,7 +10,7 @@ namespace TapToDefuse.ObjectPool
     {
         public List<Pool> Pools => pools;
         
-        [SerializeField] private List<Pool> pools;
+        [SerializeField, ReorderableList] private List<Pool> pools;
     }
 
     [Serializable]

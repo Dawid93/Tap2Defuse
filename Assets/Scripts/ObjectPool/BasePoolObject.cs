@@ -11,7 +11,7 @@ namespace TapToDefuse.ObjectPool
             PoolTag = poolTag;
         }
 
-        public abstract void OnSpawn();
+        public abstract void OnSpawn(object additionalSettings = null);
         public abstract void OnReturn();
     }
 }
