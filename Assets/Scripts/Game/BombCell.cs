@@ -8,6 +8,7 @@ namespace TapToDefuse.Game
     {
         public bool IsAvailable => _bomb == null;
         private BaseBomb _bomb;
+        
         public RectTransform RectTransform
         {
             get
@@ -25,10 +26,10 @@ namespace TapToDefuse.Game
         {
             _bomb = bomb;
         }
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.blue;
-            Gizmos.DrawWireSphere(transform.position, bombRadius);
-        }
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.blue;
+        //     Gizmos.DrawWireSphere(transform.position, bombRadius);
+        // }
     }
 }

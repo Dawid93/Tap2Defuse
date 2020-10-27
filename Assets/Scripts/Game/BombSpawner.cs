@@ -8,9 +8,16 @@ namespace TapToDefuse.Game
 {
     public class BombSpawner : MonoBehaviour
     {
-        [SerializeField] private RectTransform spawnParent;
+        [Header("Difficulty settings")]
+        [SerializeField] private bool useDifficultyBasedOnScore;
         [SerializeField] private SpawnSettings spawnSettings;
+        [Header("For score based difficulty")]
         [SerializeField] private int pointsToUpdateSettings = 5;
+        [Header("For time based difficulty")]
+        [SerializeField] private int timeToUpdateSettings = 5;
+        
+        [Header("References")]
+        [SerializeField] private RectTransform spawnParent;
         [SerializeField] private BombCellsCreator creator;
 
         private BombCell[] _cells;
@@ -20,11 +27,15 @@ namespace TapToDefuse.Game
         private float _currentTimeToNextSpawn;
         
         private float _currentTime = 0;
+        private float _currentTimeToUpdateSettings = 0;
+        private float _totalGameTime;
         private bool _spawnBombs = false;
+        private bool _canUpdateSettings;
 
         private void Awake()
         {
-            GameStats.Instance.OnBombDefuseChange += UpdateSettings;
+            if(useDifficultyBasedOnScore)
+                GameStats.Instance.OnBombDefuseChange += HandleOnPointsChange;
             GameManager.Instance.OnFinishGame += HandleGameOver;
         }
 
@@ -48,10 +59,19 @@ namespace TapToDefuse.Game
             if(!_spawnBombs) return;
             
             _currentTime += Time.deltaTime;
+            _currentTimeToUpdateSettings += Time.deltaTime;
+            _totalGameTime += Time.deltaTime;
+            
             if (_currentTime >= _currentTimeToNextSpawn)
             {
                 _currentTime = 0;
                 SpawnBomb();
+            }
+
+            if (!useDifficultyBasedOnScore && _currentTimeToUpdateSettings >= timeToUpdateSettings)
+            {
+                _currentTimeToUpdateSettings = 0;
+                UpdateSettings(_totalGameTime);
             }
         }
 
@@ -88,11 +108,16 @@ namespace TapToDefuse.Game
             return randCell;
         }
 
-        private void UpdateSettings(int points)
+        private void HandleOnPointsChange(int points)
         {
             if(points % pointsToUpdateSettings != 0)
                 return;
-            
+            UpdateSettings(points);
+        }
+
+        private void UpdateSettings(float points)
+        {
+            Debug.Log("Update");   
             points = Mathf.Clamp(points, 0, spawnSettings.FinalPointsSettings);
             
             _currentMinTimeToExplode = spawnSettings.MinTimeToExplodeOverThePoints.Evaluate(points);

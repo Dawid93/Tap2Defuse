@@ -23,7 +23,7 @@ namespace TapToDefuse.UI
             highScore.gameObject.SetActive(_showHighScore);
 
             points.SetText($"Points: {currentScore}");
-            time.SetText($"Time: {GameStats.Instance.Time}");
+            time.SetText($"Time: {GameStats.Instance.Time:F2}");
         }
 
         public void BackToMenu()
