@@ -30,6 +30,8 @@ namespace TapToDefuse.Game
 
         public override void OnSpawn(object additionalSettings)
         {
+            GameManager.Instance.OnFinishGame += StopCounter;
+            
             if (additionalSettings is TapBombSettings tbs)
             {
                 _currentCell = tbs.BombCell;

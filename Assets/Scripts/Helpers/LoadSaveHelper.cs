@@ -11,7 +11,7 @@ namespace TapToDefuse.Helpers
             PlayerPrefs.SetInt(HighScoreKey, score);
         }
 
-        public static int LoadHighScore(int score)
+        public static int LoadHighScore()
         {
             return PlayerPrefs.GetInt(HighScoreKey, 0);
         }

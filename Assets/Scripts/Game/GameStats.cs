@@ -38,6 +38,7 @@ namespace TapToDefuse.Game
                 OnPointsChange?.Invoke(_points);
             }
         }
+        public float Time { get; private set; }
 
         [SerializeField] private int userPointsMultiplier = 100;
 
@@ -51,6 +52,11 @@ namespace TapToDefuse.Game
             
             _points = 0;
             _defusedBombs = 0;
+        }
+
+        public void SetGameTime(float time)
+        {
+            Time = time;
         }
     }
 }

@@ -16,8 +16,8 @@ MonoBehaviour:
   - poolTag: DefuseBomb
     poolObject: {fileID: 7419419503975306668, guid: 61208aee812be4e5987b9970a48cc30e,
       type: 3}
-    poolSize: 30
+    poolSize: 10
   - poolTag: AvoidBomb
     poolObject: {fileID: -2558201828262934812, guid: ea2a38a95205e4eb6be3f0ef530ff682,
       type: 3}
-    poolSize: 30
+    poolSize: 10

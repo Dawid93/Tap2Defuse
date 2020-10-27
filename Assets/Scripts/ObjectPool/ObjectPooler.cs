@@ -55,7 +55,6 @@ namespace TapToDefuse.ObjectPool
                     BasePoolObject bpo = Instantiate(pool.PoolObject, spawnPos, Quaternion.identity, startPoolParent);
                     bpo.OnCreate(pool.PoolTag);
                     bpo.gameObject.SetActive(false);
-                    DontDestroyOnLoad(bpo.gameObject);
                     poolObjectsQ.Enqueue(bpo);
                 }
                 _poolDict.Add(pool.PoolTag, poolObjectsQ);

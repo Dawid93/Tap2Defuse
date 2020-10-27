@@ -18,5 +18,11 @@ namespace TapToDefuse.Game
             base.OnTimeEnd();
             ObjectPooler.Instance.ReturnToPool(this);
         }
+
+        protected override void OnTapAction()
+        {
+            base.OnTapAction();
+            GameManager.Instance.GameOver();
+        }
     }
 }

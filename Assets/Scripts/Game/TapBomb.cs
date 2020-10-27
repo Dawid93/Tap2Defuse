@@ -18,5 +18,11 @@ namespace TapToDefuse.Game
             base.OnTapAction();
             GameStats.Instance.DefusedBombs += 1;
         }
+
+        protected override void OnTimeEnd()
+        {
+            base.OnTimeEnd();
+            GameManager.Instance.GameOver();
+        }
     }
 }

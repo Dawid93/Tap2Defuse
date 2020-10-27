@@ -20,11 +20,17 @@ namespace TapToDefuse.Game
         private float _currentTimeToNextSpawn;
         
         private float _currentTime = 0;
-        private bool _startSpawn = false;
+        private bool _spawnBombs = false;
 
         private void Awake()
         {
             GameStats.Instance.OnBombDefuseChange += UpdateSettings;
+            GameManager.Instance.OnFinishGame += HandleGameOver;
+        }
+
+        private void HandleGameOver()
+        {
+            _spawnBombs = false;
         }
 
         private void Start()
@@ -32,14 +38,14 @@ namespace TapToDefuse.Game
             creator.PrepareBoard((bombCells) =>
             {
                 _cells = bombCells;
-                _startSpawn = true;
+                _spawnBombs = true;
             });
             UpdateSettings(0);
         }
 
         private void Update()
         {
-            if(!_startSpawn) return;
+            if(!_spawnBombs) return;
             
             _currentTime += Time.deltaTime;
             if (_currentTime >= _currentTimeToNextSpawn)
