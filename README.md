@@ -22,5 +22,5 @@ In editor you can change difficulty settings by modifying or creating new `Spawn
 Game have two difficulty settings based on `SpawnSettings`. 
 Difficulty can increased by time or by the user points.
 
-PointsToUpdateSettings - number of defused bombs needed to update difficulty
-TimeToUpdateSettings - number of seconds needed to update difficulty
+- PointsToUpdateSettings - number of defused bombs needed to update difficulty
+- TimeToUpdateSettings - number of seconds needed to update difficulty
