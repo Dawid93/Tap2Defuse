@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TapToDefuse.Helpers;
 using TapToDefuse.ObjectPool;
 using UniRx;
 using UniRx.InternalUtil;
@@ -31,7 +32,6 @@ namespace TapToDefuse.Game
         public override void OnSpawn(object additionalSettings)
         {
             GameManager.Instance.OnFinishGame += StopCounter;
-            
             if (additionalSettings is TapBombSettings tbs)
             {
                 _currentCell = tbs.BombCell;
@@ -44,6 +44,8 @@ namespace TapToDefuse.Game
 
         public override void OnReturn()
         {
+            ObjectPooler.Instance.GetFromPool(PoolTagHelper.DefuseParticleTag, transform.position,
+                Quaternion.identity, null);
             _currentCell.SetBomb(null);
             _currentCell = null;
             StopCounter();

@@ -21,3 +21,7 @@ MonoBehaviour:
     poolObject: {fileID: -2558201828262934812, guid: ea2a38a95205e4eb6be3f0ef530ff682,
       type: 3}
     poolSize: 10
+  - poolTag: DefuseParticle
+    poolObject: {fileID: 2932321082069378972, guid: 4ec20b37146bd4cb1a63ad62fd4c6104,
+      type: 3}
+    poolSize: 10
