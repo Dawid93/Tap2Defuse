@@ -4,7 +4,7 @@
 
 ## About
 
-Simple mobile game created in Unity in which the Player should tap on the greec circle before they turn red and avoid the black one.
+Simple mobile game created in Unity in which the Player should tap on the green circle before it turn into red and avoid the black ones.
 
 ## Difficulty settings
 
